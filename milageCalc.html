@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: #5F8670;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            color: black;
+            padding: 30px;
+            width: 900px;
+            border-radius: 10px;
+
+        }
+
+        .container h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .calculator {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .calculator label {
+            font-size: 1.2rem;
+            /* font-weight: 600; */
+            padding: 5px 10px;
+        }
+
+        .calculator input {
+            padding: 5px 10px;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .form {
+            width: 55%;
+        }
+
+        .table {
+            width: 45%;
+        }
+
+        #btns {
+            background-color: #FF9800;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+
+        }
+
+        #btn {
+            background-color: #f8b248;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button {
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        #fuel {
+            margin-left: 45px;
+        }
+
+        #price {
+            margin-left: 35px;
+        }
+
+        .table {
+            font-size: 1.2rem;
+            border: 1px solid rgb(146, 143, 143);
+        }
+
+        table {
+            width: 100%;
+            /* font-weight: 600; */
+        }
+
+        table th {
+            background-color: #FF9800;
+            margin: 10px;
+            padding: 8px;
+            border: 1px solid rgb(142, 138, 138);
+            width: 100px;
+        }
+
+        table td {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid rgb(141, 138, 138);
+        }
+
+        table .unit {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>MILEAGE CALCULATOR</h1>
+        <div class="calculator">
+            <div class="form">
+                <label for="">Distance</label>
+                <input type="number" placeholder="360 km/miles" id="distance">
+                <input type="button" value="km" id="btn">
+                <input type="button" value="miles" id="btns"><br>
+                <label for="">Fuel</label>
+                <input type="number" placeholder="7 liter/gallon" id="fuel">
+                <input type="button" value="ltr" id="btn">
+                <input type="button" value="Gal" id="btns"><br>
+                <label for="">Price</label>
+                <input type="number" placeholder="106.31" id="price">
+                <input type="button" value="INR" id="btns"><br>
+                <button id="btns" onclick="calc()">Calculate</button>
+                <button id="btns" onclick="resetForm()">Reset</button>
+            </div>
+            <div class="table">
+                <table>
+                    <tr>
+                        <th class="unit" style="width: 50%;">Units</th>
+                        <th class="output" style="width: 50%;">Output</th>
+                    </tr>
+                    <tr>
+                        <td>Distance</td>
+                        <td>- <span id="distanceValue"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Fuel</td>
+                        <td>- <span id="fuelValue"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Total Amount</td>
+                        <td>- <span id="amount"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Fuel Expense</td>
+                        <td>- <span id="expance"></span></td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td colspan="2">Mileage: <span id="milage">0</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calc() {
+            let distance = parseFloat(document.getElementById('distance').value);
+            let fuel = parseFloat(document.getElementById('fuel').value);
+            let price = parseFloat(document.getElementById('price').value);
+
+            document.getElementById('distanceValue').innerHTML = `${distance} <strong>km</strong>`;
+            document.getElementById('fuelValue').innerHTML = `${fuel} <strong>Liter</strong>`;
+            document.getElementById('expance').innerHTML = `Rs.${(106.31 * fuel / distance).toFixed(2)}<strong>/km</strong>`;
+            document.getElementById('amount').innerHTML = `${(106.31 * fuel).toFixed(2)} <strong>INR</strong>`;
+            document.getElementById('milage').innerHTML = `${(distance / fuel).toFixed(2)} <strong>km/L</strong>`;
+        }
+
+        function resetForm() {
+          document.getElementById('distance').value = "";
+          document.getElementById('fuel').value = "";
+          document.getElementById('price').value = "";
+
+          document.getElementById('distanceValue').innerHTML = " ";
+          document.getElementById('fuelValue').innerHTML = " ";
+          document.getElementById('expance').innerHTML = " ";
+          document.getElementById('amount').innerHTML = " ";
+          document.getElementById('milage').innerHTML = "";
+      }
+    </script>
+</body>
+
+</html>
